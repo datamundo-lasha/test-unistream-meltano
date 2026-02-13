@@ -420,7 +420,7 @@ class AppAnalyticsStream(AppStoreConnectStream):
         
         # Process downloads (first 5 instances for safety)
         self.logger.info("Processing download instances...")
-        for i, instance in enumerate(downloads_instances[:5]):
+        for i, instance in enumerate(downloads_instances):
             instance_id = instance["id"]
             self.logger.debug(f"Processing download instance {i+1}/5: {instance_id[:8]}...")
             
@@ -441,7 +441,7 @@ class AppAnalyticsStream(AppStoreConnectStream):
         
         # Process deletes (first 5 instances)
         self.logger.info("Processing delete instances...")
-        for i, instance in enumerate(deletes_instances[:5]):
+        for i, instance in enumerate(deletes_instances):
             instance_id = instance["id"]
             self.logger.debug(f"Processing delete instance {i+1}/5: {instance_id[:8]}...")
             
@@ -460,7 +460,7 @@ class AppAnalyticsStream(AppStoreConnectStream):
         # Process sessions (first 5 instances)
         if sessions_instances:
             self.logger.info("Processing session instances...")
-            for i, instance in enumerate(sessions_instances[:5]):
+            for i, instance in enumerate(sessions_instances):
                 instance_id = instance["id"]
                 self.logger.debug(f"Processing session instance {i+1}/5: {instance_id[:8]}...")
                 
