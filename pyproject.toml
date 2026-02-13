@@ -1,0 +1,104 @@
+[project]
+name = "tap-appstoreconnect"
+version = "0.1.0"
+description = "Singer tap for Apple App Store Connect Analytics API, built with the Meltano Singer SDK."
+readme = "README.md"
+authors = [
+    { name = "Silk Analytics Team", email = "analytics@silk.com" }
+]
+keywords = [
+    "ELT",
+    "Apple App Store Connect",
+    "Singer",
+    "Meltano",
+    "Data Integration",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+license = "Apache-2.0"
+requires-python = ">=3.10"
+
+dependencies = [
+    "singer-sdk~=0.53.4",
+    "requests~=2.32.3",
+    "pyjwt~=2.9.0",
+    "cryptography~=44.0.0",
+    "typing-extensions>=4.5.0; python_version < '3.13'",
+]
+
+[project.scripts]
+tap-appstoreconnect = 'tap_appstoreconnect.tap:TapAppStoreConnect.cli'
+
+[project.urls]
+Homepage = "https://github.com/silk-analytics/tap-appstoreconnect"
+Repository = "https://github.com/silk-analytics/tap-appstoreconnect"
+
+[dependency-groups]
+dev = [
+    { include-group = "test" },
+    { include-group = "typing" },
+]
+
+test = [
+    "pytest>=9",
+    "pytest-cov>=4",
+    "singer-sdk[testing]",
+    "responses>=0.25.0",
+]
+
+typing = [
+    "mypy>=1.16.0",
+    "types-requests",
+]
+
+[build-system]
+requires = ["hatchling>=1,<2"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+minversion = "9.0"
+addopts = [
+    "--verbose",
+    "--durations=10",
+    "--cov=tap_appstoreconnect",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.mypy]
+warn_unused_configs = true
+disallow_untyped_defs = false
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = false
+warn_unreachable = true
+strict_optional = true
+python_version = "3.10"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F", "I", "N", "UP", "B", "C4", "DTZ", "T10", "EM", "ISC",
+    "ICN", "PIE", "PT", "Q", "RSE", "RET", "SIM", "TID", "TCH", "ARG",
+    "PTH", "ERA", "PL", "TRY", "RUF",
+]
+ignore = ["COM812", "ISC001"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
