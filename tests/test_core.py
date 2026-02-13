@@ -10,31 +10,6 @@ from singer_sdk.testing import get_tap_test_class
 
 from tap_appstoreconnect.tap import TapAppStoreConnect
 
-# Sample configuration for testing
-SAMPLE_CONFIG = {
-    "issuer_id": os.getenv("ASC_ISSUER_ID", "de6ee153-778d-444d-bc05-8fd0bc34de4f"),
-    "key_id": os.getenv("ASC_KEY_ID", "W4U2LTT7BY"),
-    "private_key": os.getenv(
-        "ASC_PRIVATE_KEY",
-        """-----BEGIN PRIVATE KEY-----
-MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgnHki4conP6YGq67H
-nUbnAl8zvvbR3KDF3Zdk98xpJnCgCgYIKoZIzj0DAQehRANCAAR6/vFHxtJzUKNQ
-w17ctRIjzmGT4ZF2jc/PAWTKBzGZ3/53oJoJbLtxWhJ9SnSfbJgiiRqqqLYby4Wr
-HQVlFP3X
------END PRIVATE KEY-----"""
-    ),
-    "app_id": os.getenv("ASC_APP_ID", "6463405199"),
-    "start_date": (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d"),
-    "end_date": (datetime.now(timezone.utc) - timedelta(days=1)).strftime("%Y-%m-%d"),
-}
-
-# Standard SDK tests
-TestTapAppStoreConnect = get_tap_test_class(
-    tap_class=TapAppStoreConnect,
-    config=SAMPLE_CONFIG,
-)
-
-
 
 class TestTapAppStoreConnectCustom:
     """Custom tests for tap-appstoreconnect."""
